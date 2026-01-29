@@ -4,7 +4,7 @@ export const personalInfo = {
   email: "jeevananthamp16@gmail.com",
   github: "https://github.com/jeevananthamp16",
   linkedin: "https://linkedin.com/in/jeevananthamp16",
-  profilePicture: "/profile.jpeg",
+  profilePicture: import.meta.env.BASE_URL + "profile.jpeg",
   heroDescription:
     "Site Reliability Engineer at Cisco | Bridging DevOps with Cloud, Automation & Observability. Passionate about DevOps, Cloud, and Open Source Contributions. Exploring GenAI, Large Language Models & AIOps to drive the future of intelligent automation.",
 };
