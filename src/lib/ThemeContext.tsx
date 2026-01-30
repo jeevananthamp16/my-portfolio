@@ -11,14 +11,18 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const COPPER_THEME_ID = 18;
+
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(themes[0]);
+  const [theme, setTheme] = useState<Theme>(getTheme(COPPER_THEME_ID));
 
   useEffect(() => {
-    // Load saved theme from localStorage
+    // Load saved theme from localStorage, default to Copper
     const savedThemeId = localStorage.getItem('portfolio-theme-id');
     if (savedThemeId) {
       setTheme(getTheme(parseInt(savedThemeId, 10)));
+    } else {
+      setTheme(getTheme(COPPER_THEME_ID));
     }
   }, []);
 
