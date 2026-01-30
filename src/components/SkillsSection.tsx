@@ -3,8 +3,11 @@ import { skills } from "@/lib/data";
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
 import { GlassCard } from "./ui/glass-card";
+import { useTheme } from "@/lib/ThemeContext";
 
 function SkillTag({ skill, index }: { skill: string; index: number }) {
+  const { theme } = useTheme();
+  
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -16,7 +19,7 @@ function SkillTag({ skill, index }: { skill: string; index: number }) {
         delay: 0.05 * index,
       }}
       whileHover={{ scale: 1.05, y: -2 }}
-      className="px-3 py-1 bg-muted/80 backdrop-blur-sm rounded-md text-sm border border-orange-500/10 shadow-sm"
+      className={`px-3 py-1 bg-muted/80 backdrop-blur-sm rounded-md text-sm border ${theme.border} shadow-sm`}
     >
       {skill}
     </motion.div>

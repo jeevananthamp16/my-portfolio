@@ -4,8 +4,11 @@ import { Trophy } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import { GlassCard } from "./ui/glass-card";
 import { motion } from "framer-motion";
+import { useTheme } from "@/lib/ThemeContext";
 
 export default function AwardsSection() {
+  const { theme } = useTheme();
+  
   return (
     <section
       id="awards"
@@ -21,12 +24,12 @@ export default function AwardsSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {awards.map((award, index) => (
             <MotionWrapper key={award.name + award.date} delay={index * 0.1}>
-              <GlassCard className="p-4 dark:border-orange-500/10 hover:border-orange-500/30 transition-all duration-300 flex flex-col h-full">
+              <GlassCard className={`p-4 dark:${theme.border} hover:${theme.border} transition-all duration-300 flex flex-col h-full`}>
                 <div className="flex items-center mb-2">
                   <motion.div
                     whileHover={{ rotate: 20 }}
                     transition={{ type: "spring", stiffness: 500 }}
-                    className="flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 rounded-full p-1.5 mr-2"
+                    className={`flex items-center justify-center bg-gradient-to-r ${theme.gradient} rounded-full p-1.5 mr-2`}
                   >
                     <Trophy className="h-4 w-4 text-white" />
                   </motion.div>
@@ -41,7 +44,7 @@ export default function AwardsSection() {
                       📅 {award.date}
                     </span>
                     <motion.span
-                      className="text-xs px-2 py-1 bg-orange-500/10 rounded-full"
+                      className={`text-xs px-2 py-1 ${theme.iconBg} rounded-full`}
                       whileHover={{ scale: 1.05 }}
                     >
                       {award.position}

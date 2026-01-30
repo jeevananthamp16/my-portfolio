@@ -3,8 +3,11 @@ import TimelineItem from "./TimelineItem";
 import { Award } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import { motion } from "framer-motion";
+import { useTheme } from "@/lib/ThemeContext";
 
 export default function EducationSection() {
+  const { theme } = useTheme();
+  
   return (
     <section
       id="education"
@@ -33,15 +36,15 @@ export default function EducationSection() {
 
               {edu.achievements && edu.achievements.length > 0 && (
                 <motion.div
-                  className="mt-3 p-4 bg-background/80 backdrop-blur-sm backdrop-filter rounded-lg border border-orange-500/20 dark:bg-card/10 dark:border-orange-500/10 shadow-sm"
+                  className={`mt-3 p-4 bg-background/80 backdrop-blur-sm backdrop-filter rounded-lg border ${theme.border} dark:bg-card/10 shadow-sm`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
                   <div className="flex items-center mb-3">
-                    <div className="h-6 w-6 flex items-center justify-center rounded-full bg-orange-500/10 mr-2">
-                      <Award className="h-4 w-4 text-orange-500" />
+                    <div className={`h-6 w-6 flex items-center justify-center rounded-full ${theme.iconBg} mr-2`}>
+                      <Award className={`h-4 w-4 ${theme.iconColor}`} />
                     </div>
                     <h4 className="text-sm font-medium">
                       ✨ Achievements & Activities

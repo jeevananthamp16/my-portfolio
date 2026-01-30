@@ -1,9 +1,12 @@
 import { personalInfo } from "@/lib/data";
 import { motion } from "framer-motion";
+import { useTheme } from "@/lib/ThemeContext";
 
 export default function Footer() {
+  const { theme } = useTheme();
+  
   return (
-    <footer className="border-t border-orange-500/10 py-6 bg-gradient-to-b from-background to-muted/20 backdrop-blur-sm">
+    <footer className={`border-t ${theme.border} py-6 bg-gradient-to-b from-background to-muted/20 backdrop-blur-sm`}>
       <div className="container max-w-4xl mx-auto px-6 md:px-4">
         <motion.div
           className="flex flex-col md:flex-row justify-between items-center"

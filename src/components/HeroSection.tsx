@@ -1,9 +1,12 @@
 import { personalInfo } from "@/lib/data";
-import { Mail, Github, MapPin, Linkedin } from "lucide-react";
+import { Mail, Github, MapPin, Linkedin, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import MotionWrapper from "./MotionWrapper";
+import { useTheme } from "@/lib/ThemeContext";
 
 export default function HeroSection() {
+  const { theme } = useTheme();
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -97,6 +100,18 @@ export default function HeroSection() {
                 <Linkedin className="h-4 w-4 mr-2" />
                 🔗 LinkedIn
               </motion.a>
+
+              <motion.a
+                href={personalInfo.resume}
+                download
+                className={`mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r ${theme.gradient} text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300`}
+                variants={childVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Download className="h-4 w-4" />
+                Download Resume
+              </motion.a>
             </motion.div>
           </div>
 
@@ -107,11 +122,11 @@ export default function HeroSection() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className={`absolute -inset-1 bg-gradient-to-r ${theme.gradient} rounded-full blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200`}></div>
               <img
                 src={personalInfo.profilePicture}
                 alt="Profile"
-                className="w-48 md:w-60 rounded-full relative ring-2 ring-orange-500/50"
+                className={`w-48 md:w-60 rounded-full relative ring-2 ${theme.ring}`}
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -119,9 +134,9 @@ export default function HeroSection() {
         </motion.div>
 
         <MotionWrapper>
-          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-orange-500/20 dark:border-orange-500/10 shadow-sm">
+          <div className={`bg-gradient-to-r ${theme.gradient.replace('from-', 'from-').replace('to-', 'to-')}/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border ${theme.border} shadow-sm`}>
             <p className="text-muted-foreground pl-4 py-2 mb-4 relative">
-              <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></span>
+              <span className={`absolute left-0 top-0 h-full w-1 bg-gradient-to-b ${theme.gradient} rounded-full`}></span>
               {personalInfo.heroDescription}
             </p>
           </div>

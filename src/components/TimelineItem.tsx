@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { useTheme } from "@/lib/ThemeContext";
 
 interface TimelineItemProps {
   title: string;
@@ -19,6 +20,8 @@ export default function TimelineItem({
   index = 0,
   children,
 }: TimelineItemProps) {
+  const { theme } = useTheme();
+  
   return (
     <motion.div
       className="relative flex gap-6"
@@ -29,7 +32,7 @@ export default function TimelineItem({
     >
       <div className="flex flex-col items-center">
         <motion.div
-          className="flex h-[18px] w-[18px] rounded-full border border-orange-500/50 bg-background dark:bg-muted z-10"
+          className={`flex h-[18px] w-[18px] rounded-full border ${theme.border} bg-background dark:bg-muted z-10`}
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           transition={{
@@ -42,7 +45,7 @@ export default function TimelineItem({
         />
         {!isLast && (
           <motion.div
-            className="w-px grow bg-gradient-to-b from-orange-500/50 to-red-500/30 dark:from-orange-500/30 dark:to-red-500/10"
+            className={`w-px grow ${theme.barColor} opacity-50`}
             initial={{ height: 0 }}
             whileInView={{ height: "100%" }}
             transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
